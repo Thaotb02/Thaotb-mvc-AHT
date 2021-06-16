@@ -4,16 +4,18 @@ namespace MyApp;
 
 class Router
 {
-    
+
     static public function parse($url, $request)
     {
         $url = trim($url);
 
         if ($url == "/Thaotb-mvc-AHT/")
         {
+
             $request->controller = "Tasks";
             $request->action = "index";
             $request->params = [];
+            
         }
         else
         {
