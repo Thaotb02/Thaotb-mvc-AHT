@@ -16,11 +16,11 @@ namespace MyApp\Core;
         {
             extract($this->vars);
             ob_start();
-            $taskcon = ucfirst(str_replace('Controller', '', get_class($this)));
-            $taskcon = explode('\\', $taskcon);
-            $taskcon = array_slice($taskcon, 2);
-            $taskcon = implode('', $taskcon);
-            require(ROOT . "Views/" . $taskcon . '/' . $filename . '.php');
+            $task = ucfirst(str_replace('Controller', '', get_class($this)));
+            $task = explode('\\', $task);
+            $task = array_slice($task, 2);
+            $task = implode('', $task);
+            require(ROOT . "Views/" . $task . '/' . $filename . '.php');
             $content_for_layout = ob_get_clean();
 
             if ($this->layout == false)

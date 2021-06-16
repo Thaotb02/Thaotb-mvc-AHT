@@ -18,7 +18,7 @@ class TaskModel extends Model {
     }
 
      public function setId($id)
-     {
+    {
         return $this->id = $id;
     }
 
