@@ -37,8 +37,8 @@ class TasksController extends Controller
 
     public function edit($id)
     {
-        $taskR= new TaskRepository();
-        $d["task"] = $taskR->get($id);
+        $task= new TaskRepository();
+        $d["task"] = $task->get($id);
         $this->set($d);
         $this->render("edit");
 

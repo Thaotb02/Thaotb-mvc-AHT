@@ -9,7 +9,7 @@ class Router
     {
         $url = trim($url);
 
-        if ($url == "/mvc/")
+        if ($url == "/Thaotb-mvc-AHT/")
         {
             $request->controller = "Tasks";
             $request->action = "index";

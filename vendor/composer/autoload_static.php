@@ -20,11 +20,27 @@ class ComposerStaticInit2c97122887794ed731770701f7e29ff6
         ),
     );
 
+    public static $classMap = array (
+        'MyApp\\Config\\Database' => __DIR__ . '/../..' . '/Config/Database.php',
+        'MyApp\\Controllers\\TasksController' => __DIR__ . '/../..' . '/Controllers/TasksController.php',
+        'MyApp\\Core\\Controller' => __DIR__ . '/../..' . '/Core/Controller.php',
+        'MyApp\\Core\\Model' => __DIR__ . '/../..' . '/Core/Model.php',
+        'MyApp\\Core\\ResourceInterface' => __DIR__ . '/../..' . '/Core/ResourceInterface.php',
+        'MyApp\\Core\\ResourceModel' => __DIR__ . '/../..' . '/Core/ResourceModel.php',
+        'MyApp\\Dispatcher' => __DIR__ . '/../..' . '/Dispatcher.php',
+        'MyApp\\Models\\TaskModel' => __DIR__ . '/../..' . '/Models/TaskModel.php',
+        'MyApp\\Models\\TaskRepository' => __DIR__ . '/../..' . '/Models/TaskRepository.php',
+        'MyApp\\Models\\TaskResourceModel' => __DIR__ . '/../..' . '/Models/TaskResourceModel.php',
+        'MyApp\\Request' => __DIR__ . '/../..' . '/Request.php',
+        'MyApp\\Router' => __DIR__ . '/../..' . '/Router.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit2c97122887794ed731770701f7e29ff6::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit2c97122887794ed731770701f7e29ff6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit2c97122887794ed731770701f7e29ff6::$classMap;
 
         }, null, ClassLoader::class);
     }

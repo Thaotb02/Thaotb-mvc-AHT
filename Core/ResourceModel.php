@@ -34,13 +34,16 @@ class ResourceModel
         $arrKey=[];
         $placeUpdate=[];
 
+        foreach ($arrData as $key=>$value)
+        {
+            $arrKey[] =$key;
+            array_push($placeInsert, ':'.$key);
+            array_push($placeUpdate, $key.' = :'.$key);
+
+        }
+
         if ($model->getId()===null)
         {
-            unset($arrData['id']);
-            foreach ($arrData as $key=>$value){
-                $arrKey[] =$key;
-                array_push($placeInsert, ':'.$key);
-            }
             $strKey= implode(', ',$arrKey);
             $strPlaceholder=implode(', ',$placeInsert);
             $sql ="INSERT INTO $this->table ($strKey) VALUES ($strPlaceholder)";
@@ -49,9 +52,6 @@ class ResourceModel
 
         }else
         {
-            foreach ($arrData as $key=>$value){
-                array_push($placeUpdate, $key.' = :'.$key);
-            }
             $strPlaceUpdate=implode(', ',$placeUpdate);
             $sql="UPDATE $this->table SET $strPlaceUpdate WHERE id=:id";
             $req=Database::getBdd()->prepare($sql);

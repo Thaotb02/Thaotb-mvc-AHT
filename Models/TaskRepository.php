@@ -28,7 +28,8 @@ class TaskRepository
         return $task->delete($id);
         
     }
-    public function update($model){
+    public function update($model)
+    {
         $task=new TaskResourceModel();
         return $task->save($model);
     }
