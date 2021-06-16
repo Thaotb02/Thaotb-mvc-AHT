@@ -11,11 +11,9 @@ class Router
 
         if ($url == "/Thaotb-mvc-AHT/")
         {
-
             $request->controller = "Tasks";
             $request->action = "index";
             $request->params = [];
-            
         }
         else
         {
