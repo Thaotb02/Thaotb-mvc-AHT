@@ -4,7 +4,7 @@ namespace MyApp;
 
 class Router
 {
-
+    
     static public function parse($url, $request)
     {
         $url = trim($url);
