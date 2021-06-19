@@ -5,8 +5,9 @@ use MyApp\Core\Model;
 use MyApp\Models\TaskModel;
 use MyApp\Config\Database;
 use MyApp\Core\ResourceModelInterface;
+use PDO;
 
-class ResourceModel
+class ResourceModel 
 {
     private $id,
             $model,
@@ -21,15 +22,18 @@ class ResourceModel
     
     public function getAll()
     {
+        $class = get_class($this->model);
         $sql = "SELECT * FROM $this->table";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
-        return $req->fetchAll();
+        return $req->fetchAll(PDO::FETCH_CLASS,$class);
     }
 
     public function save($model)
     {
         $arrData= $model->getProperties();
+        // print_r($arrData) ;
+        // die();
         $placeInsert=[];
         $arrKey=[];
         $placeUpdate=[];
@@ -60,10 +64,13 @@ class ResourceModel
 
     public function find($id)
     {
-        $sql = "SELECT * FROM $this->table WHERE id =" . $id;
+        $class = get_class($this->model);
+        $sql = "SELECT * FROM $this->table WHERE id = ?";
         $req = Database::getBdd()->prepare($sql);
-        $req->execute();
-        return $req->fetch();
+        $req->execute([$id]);
+       $result=$req->fetchObject($class);
+        return $result;
+
     }
 
     public function delete($id)
