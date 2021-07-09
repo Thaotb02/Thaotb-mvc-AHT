@@ -39,7 +39,6 @@ class ResourceModel
             $arrKey[] =$key;
             array_push($placeInsert, ':'.$key);
             array_push($placeUpdate, $key.' = :'.$key);
-
         }
 
         if ($model->getId()===null)

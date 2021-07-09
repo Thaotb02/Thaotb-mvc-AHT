@@ -6,9 +6,9 @@ use MyApp\Core\Model;
 
 class TaskModel extends Model {
 
-  protected $title,
+  protected $id,
+            $title,
             $description,
-            $id,
             $updated_at,
             $created_at;
 
