@@ -8,6 +8,7 @@ use MyApp\Models\TaskRepository;
 
 class TasksController extends Controller
 {
+    
     function index()
     {
         $task = new TaskRepository();
@@ -22,39 +23,37 @@ class TasksController extends Controller
         $this->render("create");
         if (!empty($_POST["title"]) && !empty($_POST["description"]))
         {
-            $arr= new TaskModel();
-            $arr->setTitle($_POST['title']);
-            $arr->setDescription($_POST['description']);
-            $arr->setCreateAt(date("Y-m-d H:i:s"));
-            $task = new TaskRepository();
-            if($task->add($arr)){
+            $task= new TaskModel();
+            $task->setTitle($_POST['title']);
+            $task->setDescription($_POST['description']);
+            $task->setCreateAt(date("Y-m-d H:i:s"));
+            $taskR = new TaskRepository();
+            if($taskR->add($task)){
                header("Location: " . WEBROOT . "Tasks/index");
             }   
-        }else{
-                echo "lỗi";
-            }
+        }
     }
 
     public function edit($id)
     {
-        $task= new TaskRepository();
-        $d["task"] = $task->get($id);
-        $this->set($d);
-        $this->render("edit");
 
+        $taskR= new TaskRepository();
+        $d["tasks"] = $taskR->get($id);
         if (isset($_POST["title"]))
         {
-            $arr=new TaskModel();
-            $arr->setId($id);
-            $arr->setTitle($_POST['title']);
-            $arr->setDescription($_POST['description']);
-            $arr->setUpdateAt(date("Y-m-d H:i:s"));
+          
+            $task=new TaskModel();
+            $task->setId($id);
+            $task->setTitle($_POST['title']);
+            $task->setDescription($_POST['description']);
+            $task->setUpdateAt(date("Y-m-d H:i:s"));
             
-            $task= new TaskRepository();
-            if ($task->update($arr)){
+            if ($taskR->update($task)){
                 header("Location: " . WEBROOT . "Tasks/index");
             }
         }
+        $this->set($d);
+        $this->render("edit");
     }
 
     public function delete($id)

@@ -3,34 +3,37 @@
 namespace MyApp\Models;
 
 use MyApp\Models\TaskResourceModel;
+use MyApp\Models\TaskModel;
 
 class TaskRepository 
 {
+    protected $taskResourceModel;
+    public function __construct()
+    {
+        $task =new TaskModel();
+        $this->taskResourceModel = new TaskResourceModel('tasks', null, $task);
+    }
+
     public function getAll()
     {
-        $task=new TaskResourceModel();
-        return $task->getAll();
+        return $this->taskResourceModel->getAll();
     }
 
     public function add($model)
     {
-        $task=new TaskResourceModel();
-        return $task->save($model);
+        return $this->taskResourceModel->save($model);
     }
     public function get($id)
     {
-        $task= new TaskResourceModel();
-        return $task->find($id);
+        return $this->taskResourceModel->find($id);
     }
     public function delete($id)
     {
-        $task=new TaskResourceModel();
-        return $task->delete($id);
+        return $this->taskResourceModel->delete($id);
         
     }
     public function update($model)
     {
-        $task=new TaskResourceModel();
-        return $task->save($model);
+        return $this->taskResourceModel->save($model);
     }
 }

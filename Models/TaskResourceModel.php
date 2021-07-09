@@ -2,7 +2,6 @@
 
 namespace MyApp\Models;
 
-use MyApp\Core\Model;
 use MyApp\Core\ResourceModel;
 use MyApp\Models\TaskModel;
 
