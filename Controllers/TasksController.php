@@ -8,7 +8,6 @@ use MyApp\Models\TaskRepository;
 
 class TasksController extends Controller
 {
-    
     function index()
     {
         $task = new TaskRepository();
@@ -19,7 +18,6 @@ class TasksController extends Controller
 
     public function create()
     {
-
         $this->render("create");
         if (!empty($_POST["title"]) && !empty($_POST["description"]))
         {
@@ -36,12 +34,10 @@ class TasksController extends Controller
 
     public function edit($id)
     {
-
         $taskR= new TaskRepository();
         $d["tasks"] = $taskR->get($id);
         if (isset($_POST["title"]))
         {
-          
             $task=new TaskModel();
             $task->setId($id);
             $task->setTitle($_POST['title']);

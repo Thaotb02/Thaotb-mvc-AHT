@@ -31,9 +31,9 @@ class ResourceModel
 
     public function save($model)
     {
+        
         $arrData= $model->getProperties();
-        // print_r($arrData) ;
-        // die();
+     
         $placeInsert=[];
         $arrKey=[];
         $placeUpdate=[];
